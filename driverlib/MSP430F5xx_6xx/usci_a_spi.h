@@ -240,31 +240,6 @@ extern bool USCI_A_SPI_initSlave(uint16_t baseAddress,
 
 //*****************************************************************************
 //
-//! \brief Changes the SPI clock phase and polarity.At the end of this function
-//! call, SPI module is left enabled.
-//!
-//! \param baseAddress is the base address of the I2C Master module.
-//! \param clockPhase is clock phase select.
-//!        Valid values are:
-//!        - \b USCI_A_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT
-//!           [Default]
-//!        - \b USCI_A_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT
-//! \param clockPolarity
-//!        Valid values are:
-//!        - \b USCI_A_SPI_CLOCKPOLARITY_INACTIVITY_HIGH
-//!        - \b USCI_A_SPI_CLOCKPOLARITY_INACTIVITY_LOW [Default]
-//!
-//! Modified bits are \b UCCKPL and \b UCCKPH of \b UCAxCTL0 register.
-//!
-//! \return None
-//
-//*****************************************************************************
-extern void USCI_A_SPI_changeClockPhasePolarity(uint16_t baseAddress,
-                                                uint8_t clockPhase,
-                                                uint8_t clockPolarity);
-
-//*****************************************************************************
-//
 //! \brief Transmits a byte from the SPI Module.
 //!
 //! This function will place the supplied data into SPI transmit data register
@@ -454,6 +429,12 @@ extern uint32_t USCI_A_SPI_getTransmitBufferAddressForDMA(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern uint8_t USCI_A_SPI_isBusy(uint16_t baseAddress);
+
+extern bool initMasterSPI_A(uint32_t SPICLK);
+
+extern bool initSlaveSPI_A();
+
+extern bool transmitSPI_A(uint8_t transmitData);
 
 //*****************************************************************************
 //

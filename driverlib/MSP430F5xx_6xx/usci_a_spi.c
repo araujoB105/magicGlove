@@ -130,24 +130,6 @@ bool USCI_A_SPI_initSlave(uint16_t baseAddress,
     return (STATUS_SUCCESS);
 }
 
-void USCI_A_SPI_changeClockPhasePolarity(uint16_t baseAddress,
-                                         uint8_t clockPhase,
-                                         uint8_t clockPolarity)
-{
-    //Disable the USCI Module
-    HWREG8(baseAddress + OFS_UCAxCTL1) |= UCSWRST;
-
-    HWREG8(baseAddress + OFS_UCAxCTL0) &= ~(UCCKPH + UCCKPL);
-
-    HWREG8(baseAddress + OFS_UCAxCTL0) |= (
-        clockPhase +
-        clockPolarity
-        );
-
-    //Reset the UCSWRST bit to enable the USCI Module
-    HWREG8(baseAddress + OFS_UCAxCTL1) &= ~(UCSWRST);
-}
-
 void USCI_A_SPI_transmitData(uint16_t baseAddress,
                              uint8_t transmitData)
 {
@@ -209,6 +191,95 @@ uint8_t USCI_A_SPI_isBusy(uint16_t baseAddress)
 {
     //Return the bus busy status.
     return (HWREG8(baseAddress + OFS_UCAxSTAT) & UCBUSY);
+}
+
+bool initMasterSPI_A(uint32_t SPICLK){
+    //P3.3,4, P2.7 option select
+   GPIO_setAsPeripheralModuleFunctionInputPin(
+       GPIO_PORT_P3,
+       GPIO_PIN3 + GPIO_PIN4
+       );
+
+   GPIO_setAsPeripheralModuleFunctionInputPin(
+       GPIO_PORT_P2,
+       GPIO_PIN7
+       );
+
+   //Initialize Master
+   USCI_A_SPI_initMasterParam param = {0};
+   param.selectClockSource = USCI_A_SPI_CLOCKSOURCE_SMCLK;
+   param.clockSourceFrequency = UCS_getSMCLK();
+   param.desiredSpiClock = SPICLK;
+   param.msbFirst = USCI_A_SPI_MSB_FIRST;
+   param.clockPhase = USCI_A_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT;
+   param.clockPolarity = USCI_A_SPI_CLOCKPOLARITY_INACTIVITY_HIGH;
+   returnValue = USCI_A_SPI_initMaster(USCI_A0_BASE, &param);
+
+   //Enable SPI module
+   USCI_A_SPI_enable(USCI_A0_BASE);
+
+   //Enable Receive interrupt
+   USCI_A_SPI_clearInterrupt(USCI_A0_BASE, USCI_A_SPI_RECEIVE_INTERRUPT);
+   USCI_A_SPI_enableInterrupt(USCI_A0_BASE, USCI_A_SPI_RECEIVE_INTERRUPT);
+
+   if(STATUS_FAIL == returnValue)
+   {
+       return false;
+   }
+   return true;
+}
+
+bool initSlaveSPI_A(){
+
+    GPIO_setAsInputPin(GPIO_PORT_P2, GPIO_PIN7);
+
+    while(GPIO_INPUT_PIN_LOW == GPIO_getInputPinValue(GPIO_PORT_P2, GPIO_PIN7)){
+        ;
+    }
+
+   //P3.0,1,2 option select
+   GPIO_setAsPeripheralModuleFunctionInputPin(
+       GPIO_PORT_P3,
+       GPIO_PIN3 + GPIO_PIN4
+       );
+
+   GPIO_setAsPeripheralModuleFunctionInputPin(
+       GPIO_PORT_P2,
+       GPIO_PIN7
+       );
+
+   returnValue = USCI_A_SPI_initSlave(USCI_A0_BASE,
+                                      USCI_A_SPI_MSB_FIRST,
+                                      USCI_A_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT,
+                                      USCI_A_SPI_CLOCKPOLARITY_INACTIVITY_HIGH
+                                      );
+
+   //Enable SPI module
+   USCI_A_SPI_enable(USCI_A0_BASE);
+
+   //Enable Receive interrupt
+   USCI_A_SPI_clearInterrupt(USCI_A0_BASE, USCI_A_SPI_RECEIVE_INTERRUPT);
+   USCI_A_SPI_enableInterrupt(USCI_A0_BASE, USCI_A_SPI_RECEIVE_INTERRUPT);
+
+   if(STATUS_FAIL == returnValue)
+   {
+       return false;
+   }
+   return true;
+}
+
+bool transmitSPI_A(uint8_t transmitData){
+    //USCI_A0 TX buffer ready?
+    while(!USCI_A_SPI_getInterruptStatus(USCI_A0_BASE,
+                                         USCI_A_SPI_TRANSMIT_INTERRUPT))
+    {
+        ;
+    }
+
+    //Transmit Data to slave
+    USCI_A_SPI_transmitData(USCI_A0_BASE, transmitData);
+
+    return true;
 }
 
 #endif
