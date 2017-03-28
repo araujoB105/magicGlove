@@ -35,6 +35,18 @@
 //
 //*****************************************************************************
 
+//!                  MSP430F5529LP
+//!                 -----------------
+//!                |                 |
+//!                |                 |
+//!                |                 |
+//!                |                 |
+//!                |             P3.0|-> Data Out (UCB0SIMO)
+//!                |                 |
+//!                |             P3.1|<- Data In (UCB0SOMI)
+//!                |                 |
+//!                |             P3.2|-> Serial Clock Out (UCB0CLK)
+
 //*****************************************************************************
 //
 //! \addtogroup usci_b_spi_api usci_b_spi
@@ -46,7 +58,8 @@
 
 #ifdef __MSP430_HAS_USCI_Bx__
 #include "usci_b_spi.h"
-
+#include "gpio.h"
+#include "ucs.h"
 #include <assert.h>
 
 bool USCI_B_SPI_initMaster(uint16_t baseAddress,
@@ -151,7 +164,7 @@ void USCI_B_SPI_disableInterrupt(uint16_t baseAddress,
     HWREG8(baseAddress + OFS_UCBxIE) &= ~mask;
 }
 
-uint8_t USCI_A_SPI_getInterruptStatus(uint16_t baseAddress,
+uint8_t USCI_B_SPI_getInterruptStatus(uint16_t baseAddress,
                                       uint8_t mask)
 {
     return (HWREG8(baseAddress + OFS_UCBxIFG) & mask);
@@ -199,6 +212,7 @@ bool initMasterSPI_B(uint32_t SPICLK){
        );
 
    //Initialize Master
+   bool returnValue;
    USCI_B_SPI_initMasterParam param = {0};
    param.selectClockSource = USCI_B_SPI_CLOCKSOURCE_SMCLK;
    param.clockSourceFrequency = UCS_getSMCLK();
@@ -219,6 +233,7 @@ bool initMasterSPI_B(uint32_t SPICLK){
    {
        return false;
    }
+
    return true;
 }
 
@@ -236,6 +251,7 @@ bool initSlaveSPI_B(){
        GPIO_PIN0 + GPIO_PIN1 + GPIO_PIN2
        );
 
+   bool returnValue;
    returnValue = USCI_B_SPI_initSlave(USCI_B0_BASE,
                                       USCI_B_SPI_MSB_FIRST,
                                       USCI_B_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT,

@@ -29,11 +29,24 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * --/COPYRIGHT--*/
+
 //*****************************************************************************
 //
 // usci_a_spi.c - Driver for the usci_a_spi Module.
 //
 //*****************************************************************************
+
+//!                  MSP430F5529LP
+//!                 -----------------
+//!                |                 |
+//!                |                 |
+//!                |                 |
+//!                |                 |
+//!                |             P3.3|-> Data Out (UCB0SIMO)
+//!                |                 |
+//!                |             P3.4|<- Data In (UCB0SOMI)
+//!                |                 |
+//!                |             P2.7|-> Serial Clock Out (UCB0CLK)
 
 //*****************************************************************************
 //
@@ -46,7 +59,8 @@
 
 #ifdef __MSP430_HAS_USCI_Ax__
 #include "usci_a_spi.h"
-
+#include "gpio.h"
+#include "ucs.h"
 #include <assert.h>
 
 bool USCI_A_SPI_initMaster(uint16_t baseAddress,
@@ -205,6 +219,7 @@ bool initMasterSPI_A(uint32_t SPICLK){
        GPIO_PIN7
        );
 
+   bool returnValue;
    //Initialize Master
    USCI_A_SPI_initMasterParam param = {0};
    param.selectClockSource = USCI_A_SPI_CLOCKSOURCE_SMCLK;
@@ -248,6 +263,7 @@ bool initSlaveSPI_A(){
        GPIO_PIN7
        );
 
+   bool returnValue;
    returnValue = USCI_A_SPI_initSlave(USCI_A0_BASE,
                                       USCI_A_SPI_MSB_FIRST,
                                       USCI_A_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT,

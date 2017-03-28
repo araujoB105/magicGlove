@@ -48,15 +48,15 @@
 //!
 //!                  MSP430F5438A
 //!                 -----------------
-//!            /|\ |                 |
-//!             |  |                 |
-//!    Master---+->|RST              |
 //!                |                 |
-//!                |             P3.1|-> Data Out (UCB0SIMO)
 //!                |                 |
-//!                |             P3.2|<- Data In (UCB0SOMI)
 //!                |                 |
-//!                |             P3.3|-> Serial Clock Out (UCB0CLK)
+//!                |                 |
+//!                |             P3.0|-> Data Out (UCB0SIMO)
+//!                |                 |
+//!                |             P3.1|<- Data In (UCB0SOMI)
+//!                |                 |
+//!                |             P3.2|-> Serial Clock Out (UCB0CLK)
 //!
 //!
 //! This example uses the following peripherals and I/O signals.  You must
@@ -89,33 +89,10 @@ void main(void)
     //Stop watchdog timer
     WDT_A_hold(WDT_A_BASE);
 
-     //P3.5,4,0 option select
-    GPIO_setAsPeripheralModuleFunctionInputPin(
-        GPIO_PORT_P3,
-        GPIO_PIN0 + GPIO_PIN1 + GPIO_PIN2
-        );
+    GPIO_setAsOutputPin(GPIO_PORT_P1, GPIO_PIN0);
+    GPIO_setOutputLowOnPin(GPIO_PORT_P1, GPIO_PIN0);
 
-    //Initialize Master
-    USCI_B_SPI_initMasterParam param = {0};
-    param.selectClockSource = USCI_B_SPI_CLOCKSOURCE_SMCLK;
-    param.clockSourceFrequency = UCS_getSMCLK();
-    param.desiredSpiClock = SPICLK;
-    param.msbFirst = USCI_B_SPI_MSB_FIRST;
-    param.clockPhase = USCI_B_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT;
-    param.clockPolarity = USCI_B_SPI_CLOCKPOLARITY_INACTIVITY_HIGH;
-    returnValue = USCI_B_SPI_initMaster(USCI_B0_BASE, &param);
-
-    if(STATUS_FAIL == returnValue)
-    {
-        return;
-    }
-
-    //Enable SPI module
-    USCI_B_SPI_enable(USCI_B0_BASE);
-
-    //Enable Receive interrupt
-    USCI_B_SPI_clearInterrupt(USCI_B0_BASE, USCI_B_SPI_RECEIVE_INTERRUPT);
-    USCI_B_SPI_enableInterrupt(USCI_B0_BASE, USCI_B_SPI_RECEIVE_INTERRUPT);
+    initMasterSPI_A(SPICLK);
 
     //Wait for slave to initialize
     __delay_cycles(100);
@@ -123,15 +100,7 @@ void main(void)
     //Initialize data values
     transmitData = 0xAB;
 
-    //USCI_A0 TX buffer ready?
-    while(!USCI_B_SPI_getInterruptStatus(USCI_B0_BASE,
-                                         USCI_B_SPI_TRANSMIT_INTERRUPT))
-    {
-        ;
-    }
-
-    //Transmit Data to slave
-    USCI_B_SPI_transmitData(USCI_B0_BASE, transmitData);
+    transmitSPI_A(transmitData);
 
     //CPU off, enable interrupts
     __bis_SR_register(LPM0_bits + GIE);
@@ -143,25 +112,20 @@ void main(void)
 //
 //******************************************************************************
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
-#pragma vector=USCI_B0_VECTOR
+#pragma vector=USCI_A0_VECTOR
 __interrupt
 #elif defined(__GNUC__)
-__attribute__((interrupt(USCI_B0_VECTOR)))
+__attribute__((interrupt(USCI_A0_VECTOR)))
 #endif
-void USCI_B0_ISR(void)
+void USCI_A0_ISR(void)
 {
-    switch(__even_in_range(UCB0IV,4))
+    switch(__even_in_range(UCA0IV,4))
     {
     //Vector 2 - RXIFG
     case 2:
-        //USCI_A0 TX buffer ready?
-        while(!USCI_B_SPI_getInterruptStatus(USCI_B0_BASE,
-                                             USCI_B_SPI_TRANSMIT_INTERRUPT))
-        {
-            ;
-        }
 
-        receiveData = USCI_B_SPI_receiveData(USCI_B0_BASE);
+        receiveData = USCI_A_SPI_receiveData(USCI_A0_BASE);
+
         if (receiveData == 0xCC){
             GPIO_setOutputHighOnPin(
                     GPIO_PORT_P1,
@@ -173,12 +137,10 @@ void USCI_B0_ISR(void)
         //transmitData++;
 
         //Send next value
-        USCI_B_SPI_transmitData(USCI_B0_BASE,
-                                transmitData
-                                );
+        transmitSPI_A(transmitData);
 
         //Delay between transmissions for slave to process information
-        __delay_cycles(40);
+        __delay_cycles(25000);
 
         break;
     default: break;
