@@ -2,7 +2,6 @@
 // Control Vibrador por PWM en el PIN 2.0
 // Recomendado un DC de mas del 80%
 
-
 #include "driverlib.h"
 
 #define TIMER_PERIOD 120  // fpwm = f*(1/TACRR0+1) = 100 Hz
