@@ -1,0 +1,5 @@
+#Ignore some folders:
+__Previews/
+History/
+Project Logs for magicGlovePCB/
+debug.log
