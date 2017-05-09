@@ -680,6 +680,110 @@ uint32_t USCI_B_I2C_getTransmitBufferAddressForDMA(uint16_t baseAddress)
     return (baseAddress + OFS_UCBxTXBUF);
 }
 
+/* DEFINITION: Initialize Master.
+ *
+ */
+bool I2C_InitMaster(){
+    //Assign I2C pins to USCI_B0
+    GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P3, GPIO_PIN0 + GPIO_PIN1);
+
+    //Initialize Master
+    USCI_B_I2C_initMasterParam param = {0};
+    param.selectClockSource = USCI_B_I2C_CLOCKSOURCE_SMCLK;
+    param.i2cClk = UCS_getSMCLK();
+    param.dataRate = USCI_B_I2C_SET_DATA_RATE_100KBPS;
+    USCI_B_I2C_initMaster(USCI_B0_BASE, &param);
+    return 1;
+}
+
+/* DEFINITION: Write 8 bytes in the register given.
+ *
+ * INPUTS: device_addr: Slave address
+ *         reg_addr: The address of the register to write
+ *
+ * OUTPUTS: True if the Tx was successful
+ *
+ */
+bool I2C_WriteReg(uint8_t device_addr, uint8_t reg_addr, uint8_t value)
+{
+    transmitData[0] = reg_addr;
+    transmitData[1] = value;
+
+    //Specify slave address
+    USCI_B_I2C_setSlaveAddress(USCI_B2_BASE, device_addr);
+    //Set Transmit mode
+    USCI_B_I2C_setMode(USCI_B2_BASE, USCI_B_I2C_TRANSMIT_MODE);
+
+    //Enable I2C Module to start operations
+    USCI_B_I2C_enable(USCI_B2_BASE);
+    //Enable transmit Interrupt
+    USCI_B_I2C_clearInterrupt(USCI_B2_BASE, USCI_B_I2C_TRANSMIT_INTERRUPT);
+    USCI_B_I2C_enableInterrupt(USCI_B2_BASE, USCI_B_I2C_TRANSMIT_INTERRUPT);
+
+    //Delay between each transaction
+    __delay_cycles(50);
+
+    //Load TX byte counter
+    transmitCounter = 1;
+
+    //Initiate start and send first character
+    USCI_B_I2C_masterSendMultiByteStart(USCI_B2_BASE, transmitData[0]);
+
+    //Enter LPM0 with interrupts enabled
+    __bis_SR_register(LPM0_bits + GIE);
+    __no_operation();
+
+    //Delay until transmission completes
+    while(USCI_B_I2C_isBusBusy(USCI_B2_BASE))
+    {
+        ;
+    }
+    return true;
+}
+
+/* DEFINITION: Read 8 bytes from the register given.
+ *
+ * INPUTS: device_addr: Slave address
+ *         reg_addr: The address of the register to read from
+ *         *rxBuff: Pointer to the Rx buffer
+ *         rxSize: Number of bytes to read
+ *
+ * OUTPUTS: True if the Tx was successful
+ *
+ */
+bool I2C_Receive(uint8_t device_addr, uint8_t *rxBuff, uint32_t rxSize)
+{
+    //Specify slave address
+    USCI_B_I2C_setSlaveAddress(USCI_B2_BASE, device_addr);
+
+    //Set receive mode
+    USCI_B_I2C_setMode(USCI_B2_BASE, USCI_B_I2C_RECEIVE_MODE);
+
+    //Enable I2C Module to start operations
+    USCI_B_I2C_enable(USCI_B2_BASE);
+
+    USCI_B_I2C_clearInterrupt(USCI_B2_BASE, USCI_B_I2C_RECEIVE_INTERRUPT);
+    //Enable master Receive interrupt
+    USCI_B_I2C_enableInterrupt(USCI_B2_BASE,USCI_B_I2C_RECEIVE_INTERRUPT);
+
+    //wait for bus to be free
+    while(USCI_B_I2C_isBusBusy(USCI_B2_BASE))
+    {
+        ;
+    }
+
+    receiveBufferPointer = rxBuff;
+    receiveCount = rxSize;
+
+    //Initialize multi reception
+    USCI_B_I2C_masterReceiveMultiByteStart(USCI_B2_BASE);
+
+    //Enter low power mode 0 with interrupts enabled.
+    __bis_SR_register(LPM0_bits + GIE);
+    __no_operation();
+    return true;
+}
+
 #endif
 //*****************************************************************************
 //

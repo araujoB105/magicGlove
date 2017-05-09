@@ -868,6 +868,10 @@ extern uint32_t USCI_B_I2C_getReceiveBufferAddressForDMA(uint16_t baseAddress);
 //*****************************************************************************
 extern uint32_t USCI_B_I2C_getTransmitBufferAddressForDMA(uint16_t baseAddress);
 
+bool I2C_InitMaster();
+bool I2C_WriteReg(uint8_t device_addr, uint8_t reg_addr, uint8_t value);
+bool I2C_Receive(uint8_t device_addr, uint8_t *rxBuff, uint32_t rxSize);
+
 //*****************************************************************************
 //
 // Mark the end of the C bindings section for C++ compilers.
