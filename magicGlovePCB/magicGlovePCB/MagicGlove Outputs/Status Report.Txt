@@ -1,0 +1,10 @@
+Output: Bill of Materials
+Type  : BOM
+From  : Variant [[No Variations]] of Project [magicGlovePCB.PrjPcb]
+   Generated File[Bill of Materials-magicGlovePCB.xls]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 21:32:23 On 10/05/2017

@@ -38,23 +38,6 @@ PrefsVaultGUID=
 PrefsRevisionGUID=
 
 [Document1]
-DocumentPath=magicGlove.PcbDoc
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=MVNVIPDF
-
-[Document2]
 DocumentPath=Actuadores.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -71,7 +54,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=IJALURWC
 
-[Document3]
+[Document2]
 DocumentPath=AT short bus ( 7 x 4.8 inches).schdoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -88,7 +71,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=ADQCRPLT
 
-[Document4]
+[Document3]
 DocumentPath=PuertosSensores.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -105,7 +88,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=CDJWDLMO
 
-[Document5]
+[Document4]
 DocumentPath=Sensores.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -122,7 +105,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=FITLRXOG
 
-[Document6]
+[Document5]
 DocumentPath=Modulo Bluetooth.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -139,7 +122,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=GXJCWNLK
 
-[Document7]
+[Document6]
 DocumentPath=uProcesador.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -156,7 +139,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=JQCSSWJJ
 
-[Document8]
+[Document7]
 DocumentPath=Footprints.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -173,7 +156,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=GRTQGLFD
 
-[Document9]
+[Document8]
 DocumentPath=Schematics.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -189,6 +172,160 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=NWYSKOAW
+
+[Document9]
+DocumentPath=magicGlove.PcbDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=ESVDYXTR
+
+[Document10]
+DocumentPath=Job1.OutJob
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[GeneratedDocument1]
+DocumentPath=MagicGlove Outputs\BOM\Bill of Materials-magicGlovePCB.xls
+DItemRevisionGUID=
+
+[GeneratedDocument2]
+DocumentPath=Project Outputs for Free Documents\BOM\Bill of Materials-magicGlovePCB.xls
+DItemRevisionGUID=
+
+[GeneratedDocument3]
+DocumentPath=MagicGlove Outputs\NC Drill\magicGlove.DRR
+DItemRevisionGUID=
+
+[GeneratedDocument4]
+DocumentPath=Project Outputs for Free Documents\NC Drill\magicGlove.DRR
+DItemRevisionGUID=
+
+[GeneratedDocument5]
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.EXTREP
+DItemRevisionGUID=
+
+[GeneratedDocument6]
+DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.EXTREP
+DItemRevisionGUID=
+
+[GeneratedDocument7]
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GBL
+DItemRevisionGUID=
+
+[GeneratedDocument8]
+DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.GBL
+DItemRevisionGUID=
+
+[GeneratedDocument9]
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GBO
+DItemRevisionGUID=
+
+[GeneratedDocument10]
+DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.GBO
+DItemRevisionGUID=
+
+[GeneratedDocument11]
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GBP
+DItemRevisionGUID=
+
+[GeneratedDocument12]
+DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.GBP
+DItemRevisionGUID=
+
+[GeneratedDocument13]
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GM13
+DItemRevisionGUID=
+
+[GeneratedDocument14]
+DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.GM13
+DItemRevisionGUID=
+
+[GeneratedDocument15]
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GM16
+DItemRevisionGUID=
+
+[GeneratedDocument16]
+DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.GM16
+DItemRevisionGUID=
+
+[GeneratedDocument17]
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument18]
+DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument19]
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument20]
+DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument21]
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument22]
+DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument23]
+DocumentPath=MagicGlove Outputs\NC Drill\magicGlove.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument24]
+DocumentPath=Project Outputs for Free Documents\NC Drill\magicGlove.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument25]
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.REP
+DItemRevisionGUID=
+
+[GeneratedDocument26]
+DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.REP
+DItemRevisionGUID=
+
+[GeneratedDocument27]
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument28]
+DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument29]
+DocumentPath=MagicGlove Outputs\NC Drill\magicGlove.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument30]
+DocumentPath=Project Outputs for Free Documents\NC Drill\magicGlove.TXT
+DItemRevisionGUID=
 
 [Configuration1]
 Name=Sources
