@@ -212,119 +212,59 @@ DocumentPath=MagicGlove Outputs\BOM\Bill of Materials-magicGlovePCB.xls
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=Project Outputs for Free Documents\BOM\Bill of Materials-magicGlovePCB.xls
-DItemRevisionGUID=
-
-[GeneratedDocument3]
 DocumentPath=MagicGlove Outputs\NC Drill\magicGlove.DRR
 DItemRevisionGUID=
 
-[GeneratedDocument4]
-DocumentPath=Project Outputs for Free Documents\NC Drill\magicGlove.DRR
-DItemRevisionGUID=
-
-[GeneratedDocument5]
+[GeneratedDocument3]
 DocumentPath=MagicGlove Outputs\Gerber\magicGlove.EXTREP
 DItemRevisionGUID=
 
-[GeneratedDocument6]
-DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.EXTREP
-DItemRevisionGUID=
-
-[GeneratedDocument7]
+[GeneratedDocument4]
 DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GBL
 DItemRevisionGUID=
 
-[GeneratedDocument8]
-DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.GBL
-DItemRevisionGUID=
-
-[GeneratedDocument9]
+[GeneratedDocument5]
 DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GBO
 DItemRevisionGUID=
 
-[GeneratedDocument10]
-DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.GBO
-DItemRevisionGUID=
-
-[GeneratedDocument11]
+[GeneratedDocument6]
 DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GBP
 DItemRevisionGUID=
 
-[GeneratedDocument12]
-DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.GBP
-DItemRevisionGUID=
-
-[GeneratedDocument13]
+[GeneratedDocument7]
 DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GM13
 DItemRevisionGUID=
 
-[GeneratedDocument14]
-DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.GM13
-DItemRevisionGUID=
-
-[GeneratedDocument15]
+[GeneratedDocument8]
 DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GM16
 DItemRevisionGUID=
 
-[GeneratedDocument16]
-DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.GM16
-DItemRevisionGUID=
-
-[GeneratedDocument17]
+[GeneratedDocument9]
 DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GTL
 DItemRevisionGUID=
 
-[GeneratedDocument18]
-DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.GTL
-DItemRevisionGUID=
-
-[GeneratedDocument19]
+[GeneratedDocument10]
 DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GTO
 DItemRevisionGUID=
 
-[GeneratedDocument20]
-DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.GTO
-DItemRevisionGUID=
-
-[GeneratedDocument21]
+[GeneratedDocument11]
 DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GTP
 DItemRevisionGUID=
 
-[GeneratedDocument22]
-DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.GTP
-DItemRevisionGUID=
-
-[GeneratedDocument23]
+[GeneratedDocument12]
 DocumentPath=MagicGlove Outputs\NC Drill\magicGlove.LDP
 DItemRevisionGUID=
 
-[GeneratedDocument24]
-DocumentPath=Project Outputs for Free Documents\NC Drill\magicGlove.LDP
-DItemRevisionGUID=
-
-[GeneratedDocument25]
+[GeneratedDocument13]
 DocumentPath=MagicGlove Outputs\Gerber\magicGlove.REP
 DItemRevisionGUID=
 
-[GeneratedDocument26]
-DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.REP
-DItemRevisionGUID=
-
-[GeneratedDocument27]
+[GeneratedDocument14]
 DocumentPath=MagicGlove Outputs\Gerber\magicGlove.RUL
 DItemRevisionGUID=
 
-[GeneratedDocument28]
-DocumentPath=Project Outputs for Free Documents\Gerber\magicGlove.RUL
-DItemRevisionGUID=
-
-[GeneratedDocument29]
+[GeneratedDocument15]
 DocumentPath=MagicGlove Outputs\NC Drill\magicGlove.TXT
-DItemRevisionGUID=
-
-[GeneratedDocument30]
-DocumentPath=Project Outputs for Free Documents\NC Drill\magicGlove.TXT
 DItemRevisionGUID=
 
 [Configuration1]
@@ -936,6 +876,46 @@ OutputName9=Specctra Design PCB
 OutputDocumentPath9=
 OutputVariantName9=
 OutputDefault9=0
+OutputType10=Ansoft Neutral
+OutputName10=Ansoft Neutral (AutoPCB)
+OutputDocumentPath10=
+OutputVariantName10=
+OutputDefault10=0
+OutputType11=HyperLynx
+OutputName11=HyperLynx (AutoPCB)
+OutputDocumentPath11=
+OutputVariantName11=
+OutputDefault11=0
+OutputType12=Orcad SDT Schematic
+OutputName12=Orcad SDT Schematic (AutoSCH)
+OutputDocumentPath12=
+OutputVariantName12=
+OutputDefault12=0
+OutputType13=Orcad v7 Capture Design
+OutputName13=Orcad v7 Capture Design (AutoSCH)
+OutputDocumentPath13=
+OutputVariantName13=
+OutputDefault13=0
+OutputType14=P-CAD ASCII
+OutputName14=P-CAD ASCII (AutoPCB)
+OutputDocumentPath14=
+OutputVariantName14=
+OutputDefault14=0
+OutputType15=P-CAD V16 Schematic Design
+OutputName15=P-CAD V16 Schematic Design (AutoSCH)
+OutputDocumentPath15=
+OutputVariantName15=
+OutputDefault15=0
+OutputType16=Protel PCB 2.8 ASCII
+OutputName16=Protel PCB 2.8 ASCII (AutoPCB)
+OutputDocumentPath16=
+OutputVariantName16=
+OutputDefault16=0
+OutputType17=SiSoft
+OutputName17=SiSoft (AutoPCB)
+OutputDocumentPath17=
+OutputVariantName17=
+OutputDefault17=0
 
 [OutputGroup10]
 Name=PostProcess Outputs

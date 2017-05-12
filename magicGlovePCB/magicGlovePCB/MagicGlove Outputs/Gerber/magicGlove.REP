@@ -86,8 +86,8 @@ Used DCodes :
     D46
     D47
     D48
-    D50
-    D52
+    D49
+    D51
     D53
     D57
     D58
@@ -115,7 +115,7 @@ Generating : Top Overlay
 Used DCodes :
     D47
     D48
-    D52
+    D49
     D54
     D71
     D72
@@ -203,17 +203,6 @@ Used DCodes :
 *************************************************************
 
 *************************************************************
-Generating : Mechanical 13
-      File : magicGlove.GM13
-
-    Adding Layer      : Mechanical 13
-
-
-Used DCodes :
-    D75
-*************************************************************
-
-*************************************************************
 Generating : Mechanical 16
       File : magicGlove.GM16
 
@@ -221,7 +210,7 @@ Generating : Mechanical 16
 
 
 Used DCodes :
-    D48
+    D49
     D73
     D75
     D81

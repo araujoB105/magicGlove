@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------------------------------------------------------------------
-NCDrill File Report For: magicGlove.PcbDoc   10/05/2017  21:32:14
+NCDrill File Report For: magicGlove.PcbDoc   12/05/2017  14:06:26
 ----------------------------------------------------------------------------------------------------------------------------------
 
 Layer Pair : Top Layer to Bottom Layer
@@ -7,12 +7,12 @@ ASCII RoundHoles File : magicGlove.TXT
 
 Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
 ----------------------------------------------------------------------------------------------------------------------------------
-T1      12mil (0.3mm)                                             Round             272       PTH        49.00inch (1244.61mm)
+T1      12mil (0.3mm)                                             Round             272       PTH        48.98inch (1244.16mm)
 T2      28mil (0.7mm)                                             Round             10        PTH        0.45inch (11.43mm)
 T3      30mil (0.762mm)                                           Round             2         PTH        0.26inch (6.50mm)
 T4      32mil (0.8mm)                                             Round             3         PTH        0.10inch (2.54mm)
 T5      35mil (0.9mm)                                             Round             46        PTH        12.99inch (329.87mm)
-T6      118mil (3mm)                                              Round             4         PTH        12.64inch (320.94mm)
+T6      118mil (3mm)                                              Round             4         PTH        12.04inch (305.84mm)
 ----------------------------------------------------------------------------------------------------------------------------------
 Totals                                                                              337
 
