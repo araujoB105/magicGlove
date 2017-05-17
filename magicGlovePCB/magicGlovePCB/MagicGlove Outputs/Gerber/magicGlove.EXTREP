@@ -1,5 +1,5 @@
 ------------------------------------------------------------------------------------------
-Gerber File Extension Report For: magicGlove.GBR   12/05/2017  14:06:20
+Gerber File Extension Report For: magicGlove.GBR   17/05/2017  11:21:09
 ------------------------------------------------------------------------------------------
 
 
@@ -10,6 +10,8 @@ Layer Extension     Layer Description
 .GBL                Bottom Layer                            
 .GTO                Top Overlay                             
 .GTP                Top Paste                               
+.GTS                Top Solder                              
+.GBS                Bottom Solder                           
 .GBP                Bottom Paste                            
 .GBO                Bottom Overlay                          
 .GM16               Mechanical 16                           

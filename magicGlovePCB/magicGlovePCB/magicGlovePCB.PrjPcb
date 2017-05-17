@@ -232,34 +232,42 @@ DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GBP
 DItemRevisionGUID=
 
 [GeneratedDocument7]
-DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GM16
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GBS
 DItemRevisionGUID=
 
 [GeneratedDocument8]
-DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GTL
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GM16
 DItemRevisionGUID=
 
 [GeneratedDocument9]
-DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GTO
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GTL
 DItemRevisionGUID=
 
 [GeneratedDocument10]
-DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GTP
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GTO
 DItemRevisionGUID=
 
 [GeneratedDocument11]
-DocumentPath=MagicGlove Outputs\NC Drill\magicGlove.LDP
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GTP
 DItemRevisionGUID=
 
 [GeneratedDocument12]
-DocumentPath=MagicGlove Outputs\Gerber\magicGlove.REP
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.GTS
 DItemRevisionGUID=
 
 [GeneratedDocument13]
-DocumentPath=MagicGlove Outputs\Gerber\magicGlove.RUL
+DocumentPath=MagicGlove Outputs\NC Drill\magicGlove.LDP
 DItemRevisionGUID=
 
 [GeneratedDocument14]
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.REP
+DItemRevisionGUID=
+
+[GeneratedDocument15]
+DocumentPath=MagicGlove Outputs\Gerber\magicGlove.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument16]
 DocumentPath=MagicGlove Outputs\NC Drill\magicGlove.TXT
 DItemRevisionGUID=
 
