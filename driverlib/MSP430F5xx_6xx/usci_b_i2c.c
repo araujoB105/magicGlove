@@ -299,6 +299,7 @@ void USCI_B_I2C_masterSendMultiByteStart(uint16_t baseAddress,
     HWREG8(baseAddress + OFS_UCBxIE) &= ~(UCTXIE);
 
     //Send start condition.
+    printf("%x\n",UCTR+UCTXSTT);
     HWREG8(baseAddress + OFS_UCBxCTL1) |= UCTR + UCTXSTT;
 
     //Poll for transmit interrupt flag.
@@ -306,7 +307,7 @@ void USCI_B_I2C_masterSendMultiByteStart(uint16_t baseAddress,
     {
         ;
     }
-
+printf("%x\n",txData);
     //Send single byte data.
     HWREG8(baseAddress + OFS_UCBxTXBUF) = txData;
 
@@ -704,37 +705,38 @@ bool I2C_InitMaster(){
  * OUTPUTS: True if the Tx was successful
  *
  */
-bool I2C_WriteReg(uint8_t device_addr, uint8_t reg_addr, uint8_t value)
+bool I2C_WriteReg(uint8_t device_addr, uint8_t cnt)
 {
-    transmitData[0] = reg_addr;
-    transmitData[1] = value;
 
     //Specify slave address
-    USCI_B_I2C_setSlaveAddress(USCI_B2_BASE, device_addr);
+    USCI_B_I2C_setSlaveAddress(USCI_B0_BASE, device_addr);
     //Set Transmit mode
-    USCI_B_I2C_setMode(USCI_B2_BASE, USCI_B_I2C_TRANSMIT_MODE);
+    USCI_B_I2C_setMode(USCI_B0_BASE, USCI_B_I2C_TRANSMIT_MODE);
 
     //Enable I2C Module to start operations
-    USCI_B_I2C_enable(USCI_B2_BASE);
+    USCI_B_I2C_enable(USCI_B0_BASE);
     //Enable transmit Interrupt
-    USCI_B_I2C_clearInterrupt(USCI_B2_BASE, USCI_B_I2C_TRANSMIT_INTERRUPT);
-    USCI_B_I2C_enableInterrupt(USCI_B2_BASE, USCI_B_I2C_TRANSMIT_INTERRUPT);
+    USCI_B_I2C_clearInterrupt(USCI_B0_BASE, USCI_B_I2C_TRANSMIT_INTERRUPT);
+    USCI_B_I2C_enableInterrupt(USCI_B0_BASE, USCI_B_I2C_TRANSMIT_INTERRUPT);
 
     //Delay between each transaction
     __delay_cycles(50);
 
-    //Load TX byte counter
+    //Load TX byte counter and length to transmit
     transmitCounter = 1;
+    transmitLength = cnt;
+    printf("%x",transmitData[0]);
+    printf("\n%d\n",transmitLength);
 
     //Initiate start and send first character
-    USCI_B_I2C_masterSendMultiByteStart(USCI_B2_BASE, transmitData[0]);
+    USCI_B_I2C_masterSendMultiByteStart(USCI_B0_BASE, transmitData[0]);
 
     //Enter LPM0 with interrupts enabled
     __bis_SR_register(LPM0_bits + GIE);
     __no_operation();
 
     //Delay until transmission completes
-    while(USCI_B_I2C_isBusBusy(USCI_B2_BASE))
+    while(USCI_B_I2C_isBusBusy(USCI_B0_BASE))
     {
         ;
     }
@@ -754,20 +756,20 @@ bool I2C_WriteReg(uint8_t device_addr, uint8_t reg_addr, uint8_t value)
 bool I2C_Receive(uint8_t device_addr, uint8_t *rxBuff, uint32_t rxSize)
 {
     //Specify slave address
-    USCI_B_I2C_setSlaveAddress(USCI_B2_BASE, device_addr);
+    USCI_B_I2C_setSlaveAddress(USCI_B0_BASE, device_addr);
 
     //Set receive mode
-    USCI_B_I2C_setMode(USCI_B2_BASE, USCI_B_I2C_RECEIVE_MODE);
+    USCI_B_I2C_setMode(USCI_B0_BASE, USCI_B_I2C_RECEIVE_MODE);
 
     //Enable I2C Module to start operations
-    USCI_B_I2C_enable(USCI_B2_BASE);
+    USCI_B_I2C_enable(USCI_B0_BASE);
 
-    USCI_B_I2C_clearInterrupt(USCI_B2_BASE, USCI_B_I2C_RECEIVE_INTERRUPT);
+    USCI_B_I2C_clearInterrupt(USCI_B0_BASE, USCI_B_I2C_RECEIVE_INTERRUPT);
     //Enable master Receive interrupt
-    USCI_B_I2C_enableInterrupt(USCI_B2_BASE,USCI_B_I2C_RECEIVE_INTERRUPT);
+    USCI_B_I2C_enableInterrupt(USCI_B0_BASE,USCI_B_I2C_RECEIVE_INTERRUPT);
 
     //wait for bus to be free
-    while(USCI_B_I2C_isBusBusy(USCI_B2_BASE))
+    while(USCI_B_I2C_isBusBusy(USCI_B0_BASE))
     {
         ;
     }
@@ -776,7 +778,7 @@ bool I2C_Receive(uint8_t device_addr, uint8_t *rxBuff, uint32_t rxSize)
     receiveCount = rxSize;
 
     //Initialize multi reception
-    USCI_B_I2C_masterReceiveMultiByteStart(USCI_B2_BASE);
+    USCI_B_I2C_masterReceiveMultiByteStart(USCI_B0_BASE);
 
     //Enter low power mode 0 with interrupts enabled.
     __bis_SR_register(LPM0_bits + GIE);

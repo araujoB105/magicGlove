@@ -54,6 +54,16 @@ extern "C"
 #endif
 
 #include "inc/hw_memmap.h"
+#include "gpio.h"
+#include "ucs.h"
+#include <stdio.h>
+//Variables globales
+uint8_t transmitData[40];
+uint8_t transmitCounter;
+uint8_t transmitLength;
+uint8_t *receiveBufferPointer;
+uint8_t receiveCount;
+
 //*****************************************************************************
 //
 //! \brief Used in the USCI_B_I2C_initMaster() function as the param parameter.
@@ -869,7 +879,7 @@ extern uint32_t USCI_B_I2C_getReceiveBufferAddressForDMA(uint16_t baseAddress);
 extern uint32_t USCI_B_I2C_getTransmitBufferAddressForDMA(uint16_t baseAddress);
 
 bool I2C_InitMaster();
-bool I2C_WriteReg(uint8_t device_addr, uint8_t reg_addr, uint8_t value);
+bool I2C_WriteReg(uint8_t device_addr, uint8_t cnt);
 bool I2C_Receive(uint8_t device_addr, uint8_t *rxBuff, uint32_t rxSize);
 
 //*****************************************************************************
